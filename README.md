@@ -1,13 +1,11 @@
 # 🔥 Noble TLS
 
-[![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/release/python-310/)
-
 Noble TLS is an advanced HTTP library based on requests and tls-client.
 Now async, providing many more features and auto updating the JA3 fingerprints.
 
 # Installation
 ```
-pip install noble-tls
+pip install git+git://github.com/eftehassanpp/efte-noble-tls@master
 ```
 
 ### Features
