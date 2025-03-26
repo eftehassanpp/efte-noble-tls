@@ -292,17 +292,16 @@ class Session:
         # --- Request Body ---------------------------------------------------------------------------------------------
         # Prepare request body - build request body
         # Data has priority. JSON is only used if data is None.
-        # if data is None and json is not None:
-        #     if type(json) in [dict, list]:
-        #         json = dumps(json)
-        #     request_body = json
-        #     content_type = "application/json"
-        # elif data is not None and type(data) not in [str, bytes]:
-        #     request_body = urllib.parse.urlencode(data, doseq=True)
-        #     content_type = "application/x-www-form-urlencoded"
-        # else:
-        #     request_body = data
-        #     content_type = None
+        if data is None and json is not None:
+            if type(json) in [dict, list]:
+                json = dumps(json)
+            request_body = json
+            self.headers["Content-Type"] = "application/json"
+        elif data is not None and type(data) not in [str, bytes]:
+            request_body = urllib.parse.urlencode(data, doseq=True)
+            self.headers["Content-Type"] = "application/x-www-form-urlencoded"
+        else:
+            request_body = data
         # set content type if it isn't set
         if "content-type" in self.headers and "Content-Type" not in self.headers:
             self.headers["Content-Type"] = self.headers["content-type"]
